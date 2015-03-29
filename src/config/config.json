@@ -1,6 +1,6 @@
 {
   "server": {
-    "baseUrl": "http://localhost:3000",
+    "baseUrl": "http://local.carlossantanar.com",
     "port": 2222,
     "env": "local"
   },
