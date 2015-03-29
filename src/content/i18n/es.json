@@ -1,0 +1,16 @@
+{
+  "site": {
+    "language": "es",
+    "title": "Carlos Santana - Desarrollador Web",
+    "meta": {
+      "keywords": "HTML5, JavaScript, Node.js",
+      "abstract": "Aprende a programar",
+      "description": "Aprende a programar"
+    }
+  },
+  "blog" : {
+    "posts": {
+      "title": "Título de la publicación"
+    }
+  }
+}

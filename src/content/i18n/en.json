@@ -1,0 +1,16 @@
+{
+  "site": {
+    "language": "en",
+    "title": "Carlos Santana - Web Developer",
+    "meta": {
+      "keywords": "HTML5, JavaScript, Node.js",
+      "abstract": "Learn to code",
+      "description": "Learn to code"
+    }
+  },
+  "blog" : {
+    "posts": {
+      "title": "Post title"
+    }
+  }
+}
