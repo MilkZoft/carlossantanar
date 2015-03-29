@@ -1,10 +1,11 @@
 'use strict';
 
 var config = require('./config/config');
-var routes = require('./controllers/index');
+var home = require('./controllers/home');
 var users = require('./controllers/users');
 
 module.exports = function(app) {
-  app.use('/', routes); // ruta barra nav, archivo controlador
+  // Path from browser
+  app.use('/', home);
   app.use('/users', users);
 };
