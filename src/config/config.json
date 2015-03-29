@@ -8,7 +8,9 @@
     "title": "Carlos Santana Roldán"
   },
   "views": {
-    "engine": "jade",
+    "engine": "handlebars",
+    "extension": ".hbs",
+    "layout": "main",
     "minify": false
   }
 }
