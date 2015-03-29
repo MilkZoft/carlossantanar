@@ -2,5 +2,4 @@ node_modules
 .DS_Store
 src/public/bower_components
 npm-debug.log
-logs/app-error-1.log
-logs/app-out-1.log
+logs/*.log
