@@ -1,7 +1,7 @@
 'use strict';
 
 var config = require('../config');
-var utils = require('devutils');
+var utils = require('./utils');
 var _ = require('lodash');
 
 module.exports = {
