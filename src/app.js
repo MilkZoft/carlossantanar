@@ -1,22 +1,32 @@
 'use strict';
 
+// Loading dependencies
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var config = require('./config/config');
+var exphbs = require('express-handlebars');
 
+// Initializing express application
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-app.locals = config; // Se manda el config a los templates
+app.set('view engine', config.views.extension);
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
+// Handlebars setup
+app.engine(config.views.extension, exphbs({
+  extname: config.views.extension,
+  defaultLayout: config.views.layout,
+  layoutsDir: __dirname + '/views/layouts',
+  partialsDir: __dirname + '/views/partials'
+}));
+
+// Sending config to templates
+app.locals = config;
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
