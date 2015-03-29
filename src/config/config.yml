@@ -1,0 +1,51 @@
+---
+production: &default
+  serverPort: 3000
+  baseUrl: http://www.thinkupcode.com
+  cookieDomain: .thinkupcode.com
+  views:
+    minify: true
+    lessPrecompile: true
+  html:
+    engine: handlebars
+    extension: .hbs
+    layout: main
+  redis:
+    host: localhost
+    port: 6379
+  controllers:
+    default: blog
+    blog:
+      postPerPage: 12
+  languages:
+    default: es
+    list: [en, es, fr, pt, ge, jp, ch]
+  security:
+    secret: th1nkupc0d3.c0m
+  database:
+    mysql:
+      host: 127.0.0.1
+      user: root
+      password:
+      database: thinkupcode
+      port: 3306
+      debug: true
+      socket: /var/mysql/mysql.sock
+    mongodb:
+      uri: mongodb://localhost/
+      database: thinkupcode
+
+stage: &stage
+  <<: *default
+  baseUrl: http://stage.thinkupcode.com
+
+latest: &latest
+  <<: *stage
+  baseUrl: http://latest.thinkupcode.com
+
+development:
+  <<: *latest
+  baseUrl: http://local.thinkupcode.com
+  views:
+    minify: false
+    lessPrecompile: false
