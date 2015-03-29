@@ -56,5 +56,8 @@ app.use(function(err, req, res, next) {
   });
 });
 
-
-module.exports = app;
+if (!!module.parent) {
+  module.exports = app;
+} else {
+  app.listen(config.server.port);
+}
