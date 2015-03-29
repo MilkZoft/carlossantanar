@@ -6,26 +6,30 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var config = require('./config/config');
+var config = require('./lib/config');
 var exphbs = require('express-handlebars');
+var hbsHelpers = require('./lib/helpers/handlebars');
 
 // Initializing express application
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', config.views.extension);
+app.set('view engine', config().html.extension);
 
 // Handlebars setup
-app.engine(config.views.extension, exphbs({
-  extname: config.views.extension,
-  defaultLayout: config.views.layout,
+app.engine(config().html.extension, exphbs({
+  extname: config().html.extension,
+  defaultLayout: config().html.layout,
   layoutsDir: __dirname + '/views/layouts',
-  partialsDir: __dirname + '/views/partials'
+  partialsDir: __dirname + '/views/partials',
+  helpers: hbsHelpers
 }));
 
 // Sending config to templates
-app.locals = config;
+app.locals = config();
+
+app.disable('x-powered-by');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -69,5 +73,5 @@ app.use(function(err, req, res, next) {
 if (!!module.parent) {
   module.exports = app;
 } else {
-  app.listen(config.server.port);
+  app.listen(config().serverPort);
 }
