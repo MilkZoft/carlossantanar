@@ -3,13 +3,11 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
+/* GET home page. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
-
-router.get('/login', function(req, res, next) {
-  res.send('estas en login users');
+  res.render('contact/form', {
+    name: 'Carlos Santana'
+  });
 });
 
 module.exports = router;

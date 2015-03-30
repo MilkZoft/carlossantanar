@@ -4,10 +4,12 @@ var config = require('./lib/config');
 var availableLanguages = config().languages.list.join('|');
 var defaultController;
 var homeController;
+var contactController;
 
 module.exports = function(app) {
   defaultController = require('./controllers/' + config().controllers.default);
   homeController = require('./controllers/home');
+  contactController = require('./controllers/contact');
 
   // Load necessary helpers
   var i18n = require('./lib/helpers/i18n');
@@ -47,4 +49,5 @@ module.exports = function(app) {
   app.use('/', defaultController);
   app.use('/:language(' + availableLanguages + ')', defaultController);
   app.use('/:language(' + availableLanguages + ')/home', homeController);
+  app.use('/:language(' + availableLanguages + ')/contact', contactController);
 };
