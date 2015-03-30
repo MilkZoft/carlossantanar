@@ -24,9 +24,15 @@ module.exports = function(app) {
 
   // default css and js
   app.use(function(req, res, next) {
-    res.locals.css = [
-      '/css/style.css'
-    ];
+    if (utils.isMobile(req.headers['user-agent'])) {
+      res.locals.css = [
+        '/css/mobile/style.css'
+      ];
+    } else {
+      res.locals.css = [
+        '/css/desktop/style.css'
+      ];
+    }
 
     res.locals.bottomJs = [
       '/bower_components/angular/angular.js',
