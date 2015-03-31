@@ -1,6 +1,6 @@
 ---
 production: &default
-  serverPort: 2222
+  serverPort: 1234
   baseUrl: http://www.carlossantanar.com
   cookieDomain: .carlossantanar.com
   views:
