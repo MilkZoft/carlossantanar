@@ -3,19 +3,25 @@
 // Loading dependencies
 var express = require('express');
 var path = require('path');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var config = require('./lib/config');
-var exphbs = require('express-handlebars');
-var hbsHelpers = require('./lib/helpers/handlebars');
 
 // Initializing express application
 var app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', config().html.extension);
+// config
+var config = require('./lib/config');
+
+// logging
+var logger = require('morgan');
+app.use(logger('dev'));
+
+// cookies/session
+var cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
+// layout
+var less = require('less-middleware');
+var exphbs = require('express-handlebars');
+var hbsHelpers = require('./lib/helpers/handlebars');
 
 // Handlebars setup
 app.engine(config().html.extension, exphbs({
@@ -26,50 +32,37 @@ app.engine(config().html.extension, exphbs({
   helpers: hbsHelpers
 }));
 
-// Sending config to templates
-app.locals = config();
-
-app.disable('x-powered-by');
-
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
-require('./router')(app);
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
-
-// error handlers
-
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
-  });
+// compile less for styles on the fly
+if (!config().lessPrecompile) {
+    app.use(less('/less', {
+        pathRoot: __dirname,
+        dest: '/public',
+        preprocess: {
+            path: function(path) {
+                return path.replace('/css/', '/');
+            }
+        }
+    }));
 }
 
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', config().html.extension);
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Sending config to templates
+app.use(function(req, res, next) {
+    res.locals.config = config();
+    next();
 });
 
+// Disabling x-powered-by
+app.disable('x-powered-by');
+
+// dispatch router
+require('./router')(app);
+
+// Export application or start the server
 if (!!module.parent) {
   module.exports = app;
 } else {
