@@ -34,15 +34,15 @@ app.engine(config().html.extension, exphbs({
 
 // compile less for styles on the fly
 if (!config().lessPrecompile) {
-    app.use(less('/less', {
-        pathRoot: __dirname,
-        dest: '/public',
-        preprocess: {
-            path: function(path) {
-                return path.replace('/css/', '/');
-            }
-        }
-    }));
+  app.use(less('/less', {
+    pathRoot: __dirname,
+    dest: '/public',
+    preprocess: {
+      path: function(path) {
+        return path.replace('/css/', '/');
+      }
+    }
+  }));
 }
 
 // view engine setup
@@ -52,8 +52,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Sending config to templates
 app.use(function(req, res, next) {
-    res.locals.config = config();
-    next();
+  res.locals.config = config();
+  next();
 });
 
 // Disabling x-powered-by

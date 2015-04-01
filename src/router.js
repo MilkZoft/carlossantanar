@@ -33,6 +33,7 @@ module.exports = function(app) {
     } else {
       res.locals.css = [
         '/bower_components/font-awesome/css/font-awesome.min.css',
+        '/bower_components/normalize-css/normalize.css',
         '/css/desktop/style.css'
       ];
     }
@@ -40,7 +41,8 @@ module.exports = function(app) {
     res.locals.bottomJs = [
       '/bower_components/angular/angular.js',
       '/bower_components/lodash/dist/lodash.min.js',
-      '/bower_components/restangular/dist/restangular.js'
+      '/bower_components/restangular/dist/restangular.js',
+      '/js/icons.js'
     ];
 
     next();

@@ -1,3 +1,29 @@
-h1 {
-    color: blue;
+// Variables
+@white: #fff;
+@darkGrey: #333;
+@lightGrey: #ccc;
+@grey: #555;
+@blueSky: #0099cc;
+@aquaGreen: #249991;
+@topColor1: #00688B;
+@topColor2: #0099cc;
+@topColor3: #00B2EE;
+@topColor4: #BFEFFF;
+@topColor5: #160812;
+
+// Mixins
+.border-radius (@radius: 5px) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+}
+
+body {
+    background-color: @darkGrey;
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
 }

@@ -22,7 +22,8 @@
     "domready": "1.0.7",
     "lodash": "2.4.1",
     "restangular": "1.4.0",
-    "font-awesome": "*"
+    "font-awesome": "*",
+    "normalize-css": "*"
   },
   "devDependencies": {
     "angular-mocks": "1.2.25"
