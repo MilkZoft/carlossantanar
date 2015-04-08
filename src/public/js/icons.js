@@ -9,7 +9,7 @@ elResume.addEventListener('mouseover', function() {
 }, false);
 
 elResume.addEventListener('mouseout', function() {
-  resumeText.innerHTML = "";
+  resumeText.innerHTML = '';
 }, false);
 
 elEmail.addEventListener('mouseover', function() {
@@ -17,5 +17,5 @@ elEmail.addEventListener('mouseover', function() {
 }, false);
 
 elEmail.addEventListener('mouseout', function() {
-  emailText.innerHTML = "";
+  emailText.innerHTML = '';
 }, false);
