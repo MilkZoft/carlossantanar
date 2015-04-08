@@ -1,8 +1,21 @@
 var resumeText = document.getElementById('resume-text');
-var el = document.getElementById('resume');
+var emailText = document.getElementById('email-text');
 
-function topHover() {
-  //resume.textContent = 'Descargar resumen';
-}
+var elResume = document.getElementById('resume');
+var elEmail = document.getElementById('email');
 
-el.addEventListener('click', topHover, false);
+elResume.addEventListener('mouseover', function() {
+  resumeText.innerHTML = 'Dowload resume';
+}, false);
+
+elResume.addEventListener('mouseout', function() {
+  resumeText.innerHTML = "";
+}, false);
+
+elEmail.addEventListener('mouseover', function() {
+  emailText.innerHTML = 'Send Email';
+}, false);
+
+elEmail.addEventListener('mouseout', function() {
+  emailText.innerHTML = "";
+}, false);
